@@ -25,7 +25,7 @@ body {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 39%;
+    height: 43%;
 }
 
 .forgot-container{
@@ -35,7 +35,7 @@ body {
 
 .forgot-button{
     background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
-    width: 68%;
+    width: 80%;
     /* margin-left: -3%; */
 }
 
@@ -65,7 +65,11 @@ body {
     margin-left: -1%;
 }
 .safe-text{
+    width: 57%;
+    color: #606162;
+    font-weight: 600;
     font-size: 2.7vh;
+    margin-left: -7%;
 }
 .cat-shield{
     width: 15%;
@@ -73,7 +77,10 @@ body {
     font-size: 6.1vh;
 }
 .signin-text{
-    font-size: 2.2vh;
+    font-size: 2.3vh;
+    color: #2c7fee;
+    font-weight: 600;
+    font-family: system-ui;
 }
 .logo-text{
     display: flex;
