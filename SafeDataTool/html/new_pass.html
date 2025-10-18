@@ -1,41 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NSO Safe DataPipeline - Sign Up</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/new_pass.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
+
 <body id="body">
     <div class="main-container">
         <div class="text" style="z-index: 99;">
-          <span class="empowering">Empowering your data with</span>
-          <br>
-          <span class="empowering" style="line-height: 1.2"> elegant security</span>
+            <span class="empowering">Empowering your data with</span>
+            <br>
+            <span class="empowering" style="line-height: 1.2"> elegant security</span>
         </div>
         <div class="signup-container">
-          <img class="side-sheild" src="../assets/side-sheild.png" alt="">
+            <img class="side-sheild" src="../assets/side-sheild.png" alt="">
             <div class="image-container">
                 <div class="sheild-container">
-                  <img src="../assets/sheild-logo3.png" class="sheild-image" alt="">
-                  <div class="text-div">
-                    <h1 class="nso-text">NSO Safe DataPipeLine</h1>
-                    <h5 style="color: #533c3c;">Secure Your Data. StreamLine Flow</h5>
-                    <div class="div-logo">
-                      <i style="font-size: 1.2rem;" class="fa-solid fa-lock logo-color"></i>
-                      <span class="secure-class">Secure</span>
-                      <i style="font-size: 1.5rem;" class="fa-solid fa-check logo-color"></i>
-                      <span class="secure-class">Compliant</span>
-                      <i style="font-size: 1.2rem;" class="fa-solid fa-globe logo-color globe"></i>
+                    <img src="../assets/sheild-logo3.png" class="sheild-image" alt="">
+                    <div class="text-div">
+                        <h1 class="nso-text">NSO Safe DataPipeLine</h1>
+                        <h5 style="color: #533c3c;">Secure Your Data. StreamLine Flow</h5>
+                        <div class="div-logo">
+                            <i style="font-size: 1.2rem;" class="fa-solid fa-lock logo-color"></i>
+                            <span class="secure-class">Secure</span>
+                            <i style="font-size: 1.5rem;" class="fa-solid fa-check logo-color"></i>
+                            <span class="secure-class">Compliant</span>
+                            <i style="font-size: 1.2rem;" class="fa-solid fa-globe logo-color globe"></i>
+                        </div>
                     </div>
-                  </div>
                 </div>
                 <div class="cyber-container">
-                  <img style="width: 100%;" src="../assets/blue-bg4.jpg" alt="">
+                    <img style="width: 100%;" src="../assets/blue-bg4.jpg" alt="">
                 </div>
             </div>
             <div class="new_pass-container">
@@ -43,29 +47,36 @@
                     <div class="common styles">
                         <h1 style="font-weight: bold; font-size: 2.5rem;">Enter New Password</h1>
                     </div>
-                    <span class='specific'>Enter the 6 digit code</span> 
-                    <div class="data">
-                        <input type="text" maxlength="1" class="otpNumber common" id="one" onkeyup="restricting(event)" autocomplete="off">
-                        <input type="text" maxlength="1" class="otpNumber common" id="one" onkeyup="restricting(event)" autocomplete="off">
-                        <input type="text" maxlength="1" class="otpNumber common" id="one" onkeyup="restricting(event)" autocomplete="off">
-                        <input type="text" maxlength="1" class="otpNumber common" id="one" onkeyup="restricting(event)" autocomplete="off">
-                        <input type="text" maxlength="1" class="otpNumber common" id="one" onkeyup="restricting(event)" autocomplete="off">
-                        <input type="text" maxlength="1" class="otpNumber common" id="one" onkeyup="restricting(event)" autocomplete="off">
+
+                    <div class="second_line">
+                        <h7 style="color: rgb(70, 69, 69);">Please enter and confirm new password below</h7>
                     </div>
-                    <span class="common number" style='font-family: "Times New Roman", Times, serif; color: #533c3c;
-'>
-                        Not your Gmail? / Didn't receive the code?
-                    </span>
-                    <div>
-                        <!--<a href="/static/html_folder/forgot_pass.html" class='links'>Try again</a>-->
-                        <button class='links' onclick="window.history.back()">Try again</button>
-                        <button class='links' id="resend">Resend code</button>
-                    </div>
-                    <button id='submit' class="common verify existing transition delay-50 duration-100 ease-in-out hover:-translate-z-1 hover:scale-106">Verify</button>
+                    <form class="form">
+
+                        <div class="mb-3">
+                            <input type="password" style="width: 80%; font-weight: 500;"
+                                class="form-control  input-tag rounded-4" id="password"
+                                placeholder="Create your strong password">
+                            <i style="top: 33.5%;left: 85%;" class="fa-solid fa-key icons"></i>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="password" style="width: 80%; font-weight: 500;"
+                                class="form-control input-tag rounded-4" id="password" placeholder="Confirm Password">
+                            <i style="top: 48.8%;right: 14%;" class="fa-solid fa-lock icons"></i>
+                        </div>
+                        <button type="submit" style="width: 80%; font-weight: 700;"
+                            class="btn btn-primary btn-custom">Reset Password</button>
+
+                        <p style="text-shadow: 2px 2px 4px rgba(0,0,0,0.1);" class="paragraph">Already have an account?
+                            <span style="color: #4b98ff; font-weight: 700;">Log in</span></p>
+
+                    </form>
                 </div>
             </div>
-    </div>
+        </div>
         <p class="terms">Terms NSO Service | Privacy Policy</p>
     </div>
 </body>
+
 </html>
