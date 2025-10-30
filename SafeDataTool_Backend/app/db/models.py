@@ -7,3 +7,4 @@ class User(SQLModel, table=True):
     email: str = Field(index=True, unique=True, max_length=255)
     password: str  # Rename to hashed; hash in service
     # No confirm_password here—validate in schema
+    

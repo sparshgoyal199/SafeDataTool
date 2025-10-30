@@ -1,0 +1,224 @@
+/* --- General Setup & Body Background --- */
+@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../assets/bg4.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-container{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;  /* horizontally center */
+    align-items: center;
+    flex-direction: column;
+}
+/* --- Main Signup Container --- */
+.signup-container {
+    display: flex;
+    width: 1200px;
+    height: 450px;
+    border-radius: 20px;
+    margin-top: 4.8%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.image-container{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(45deg, #d9e9f7, #d0e9ff);;
+    opacity: 0.87;
+    overflow: hidden;
+}
+
+.image1{
+    height: 65%;
+    width: 100%;
+}
+.image2{
+    height: 25%;
+    width: 100%;
+}
+
+.nso-image{
+    width: 542px;
+    height: 315px;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+}
+
+.rightbox{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 40px;
+}
+
+.form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.text-box{
+    margin-left: 7%;
+    margin-bottom: 2%;
+}
+
+.btn-custom{
+    background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+}
+
+.paragraph{
+    margin-top: 2%;
+    margin-left: 16%;
+}
+
+.form-container{
+    height:100%;
+    width:50%;
+}
+
+.input-div{
+    display: flex;
+}
+
+.icons{
+    position: absolute;
+    right: 19.7%;
+    color: #2c7fee;
+}
+
+.input-tag {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0,0,0,0.07);
+}
+
+.input-tag:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 8px rgba(74,144,226,0.4);
+  outline: none;
+}
+
+.sheild-container{
+    /* background-color: #a8d2f3; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nso-text{
+    color: #113655;
+    font-family: sans-serif;
+    font-weight: 700;
+}
+
+.text-div{
+    position: absolute;
+    top: 42%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sheild-image{
+    height: 82%;
+    margin-top: -112px;
+}
+
+.logo-color{
+    color: #00449f
+}
+
+.div-logo{
+    display: flex;
+    width: 53%;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+.globe{
+    position: relative;
+    bottom: -2px;
+}
+
+.key{
+    background: linear-gradient(to right, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.9rem;
+    transform: rotate(175deg);
+    margin-left: 2%;
+    margin-bottom: 2%;
+}
+
+.side-sheild{
+    width: 6%;
+    position: absolute;
+    right: 5.4%;
+    top: 37%;
+}
+
+.terms{
+    position: relative;
+    color: #444444;
+    font-weight: 600;
+}
+
+.secure-class{
+    color: #00449f;
+    font-weight: 700;
+}
+
+.text{
+    position: absolute;
+    top: 67%;
+    left: 14%;
+}
+
+.empowering{
+    font-weight: bolder;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.fancy-input {
+  width: 80%;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05); /* subtle base shadow */
+}
+
+/* Hover effect — moves input forward evenly */
+.fancy-input:hover {
+  transform: translateZ(5px) scale(1.03); /* centered glow */
+  border-color: #4a90e2;
+}
+
+/* Focus effect for typing */
+.fancy-input:focus {
+  outline: none;
+  transform: translateY(-5px) scale(1.03);
+ /* balanced glow */
+  border-color: #2c7fee;
+}

@@ -2,11 +2,12 @@
 from typing import Optional
 from pydantic import model_validator, EmailStr  # For validation
 from sqlmodel import SQLModel
+from fastapi import HTTPException
 from app.db.models import User  # Reference DB model
 # Input schema for signup (validates incoming data)
 class UserCreate(SQLModel):
     username: str
-    email: str = EmailStr()  # Auto-validates email format (e.g., user@domain.com)
+    email: EmailStr  # Auto-validates email format (e.g., user@domain.com)
     password: str
     confirm_password: str # Transient field for matching
 
@@ -32,7 +33,7 @@ class UserCreate(SQLModel):
         if not any(not c.isalnum() for c in v):  # special character check
             raise AuthException("Password must contain at least one special character")
 
-        if not self.username.isalnum():  # Alphanumeric only
+        if not self.username.isalnum():# Alphanumeric only
             raise AuthException("Username must be alphanumeric")
         return self
 
@@ -50,5 +51,7 @@ class UserOut(SQLModel):
     #Only copies the fields defined in the schema.
     #Ignores extra fields (like password).
     
-    class Config:
-        from_attributes = True  # Convert DB User obj to dict
+class Token(SQLModel):
+    access_token: str
+    token_type: str
+

@@ -10,6 +10,7 @@ from app.db.models import User
 from app.db.session import init_db
 #db.session is acting as the package for init_db
 app = FastAPI()
+#FastAPI already have its own exception handler which returns internal server error instead of crashing the programme 
 
 app.add_middleware(
     CORSMiddleware,
@@ -29,34 +30,37 @@ class AuthException(Exception):
         
     def __str__(self):
         return self.message
-#custom exception handler so that error response format(json or in string) can be customised
-
-class DbException(Exception):
+    
+class TokenException(Exception):
     def __init__(self, message: str):
         self.message = message
         
     def __str__(self):
         return self.message
-    
-@app.exception_handler(DbException)
-async def DbExceptionHandler(request: Request, exc: DbException):
+#custom exception handler so that error response format(json or in string) can be customised
+
+@app.exception_handler(TokenException)
+async def TokenExceptionHandler(request: Request, exc: TokenException):
     return JSONResponse(
-        status_code=400,
+        status_code=401,
         content={"message":str(exc)}
     )
 
 @app.exception_handler(AuthException)
 async def AuthExceptionHandler(request: Request, exc: AuthException):
     return JSONResponse(
-        status_code=401,
+        status_code=403,
         content={"message":str(exc)}
     )
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request, exc):
+    errors = exc.errors()
+    err_message = errors[0]['msg']
+    # messages = [f"{err['loc'][-1]}: {err['msg']}" for err in errors]
     return JSONResponse(
         status_code=402,
-        content={"message":str(exc)}
+        content={"message":err_message}
     )
 
 
