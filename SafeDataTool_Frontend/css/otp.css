@@ -55,7 +55,8 @@ body {
 }
 
 .common{
-    color: #fff;
+    color: black;
+    font-weight: 700;
     font-size: 2.1vh;
 }
 

@@ -40,7 +40,8 @@
                 </div>
             </div>
             <div class="otp-container">
-                <div class="div2">
+                <form action="" style="height: 100%;">
+                  <div class="div2">
                     <div class="common styles">
                         <h1 style="font-weight: bold; font-size: 2.5rem;">OTP Verification</h1>
                     </div>
@@ -59,14 +60,51 @@
                     </span>
                     <div>
                         <!--<a href="/static/html_folder/forgot_pass.html" class='links'>Try again</a>-->
-                        <button class='links' onclick="window.history.back()">Try again</button>
+                        <button class='links'>Try again</button>
                         <button class='links' id="resend">Resend code</button>
                     </div>
-                    <button id='submit' class="common verify existing transition delay-50 duration-100 ease-in-out hover:-translate-z-1 hover:scale-106">Verify</button>
+                    <button id='submit' class="common verify existing transition delay-50 duration-100 ease-in-out hover:-translate-z-1 hover:scale-106" style="color: white;">Verify</button>
                 </div>
+                </form>
             </div>
     </div>
         <p class="terms">Terms NSO Service | Privacy Policy</p>
     </div>
 </body>
+<script src="../js/otp.js"></script>
+<script>
+        function restricting(event){
+            if(event.key == 'ArrowLeft'){
+                if(event.target.previousElementSibling){
+                    event.target.previousElementSibling.focus();
+                    return;
+                }
+                else{
+                    event.target.focus();
+                    return;
+                }
+            }
+            else if(event.key == 'ArrowRight'){
+                if(event.target.nextElementSibling){
+                    event.target.nextElementSibling.focus();
+                    return;
+                }
+                else{
+                    event.target.focus();
+                    return;
+                }
+            }
+            else if (/[0-9]/.test(event.target.value)) {
+                if(event.target.nextElementSibling){
+                    event.target.nextElementSibling.focus();
+                }
+                else{
+                    document.querySelector('#submit').focus()
+                }
+            }
+            else{
+                event.target.value = '';
+            }
+        }
+    </script>
 </html>

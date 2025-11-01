@@ -23,10 +23,11 @@ async function CreatingUser(e){
             alert(`Error: ${errorData.message || 'Something went wrong'}`);
             return; // stop execution
         }
-
         const data = await response.json();
-        alert('Sign up successfully!');
-        window.location.href = '../html/login.html'
+        localStorage.setItem("email",document.querySelector("#email").value)
+        localStorage.setItem("signup",true)
+        alert(data['message']);
+        window.location.href = '../html/otp.html'
         }
     catch(err){
         console.log(err);    
