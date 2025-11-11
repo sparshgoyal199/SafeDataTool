@@ -35,6 +35,9 @@ class UserCreate(SQLModel):
 
         if not self.username.isalnum():# Alphanumeric only
             raise AuthException("Username must be alphanumeric")
+        
+        if len(self.username) > 50:
+            raise AuthException("Username length must be less than 50")
         return self
 
 # Response schema (excludes sensitive fields)
@@ -55,3 +58,28 @@ class Token(SQLModel):
     access_token: str
     token_type: str
 
+class OTP(SQLModel):
+    message: str
+    status: str
+    
+class Password(SQLModel):
+    email:str
+    password: str
+    confirm_password: str
+
+    @model_validator(mode="after")
+    def passwords_match(self) -> str:
+        from main import AuthException
+        v = self.password
+        if self.confirm_password != self.password:
+            raise AuthException("Passwords do not match")
+    
+        if len(v) < 8:
+            raise AuthException("Password must be at least 8 characters long")
+        if not any(c.isupper() for c in v):
+            raise AuthException("Password must contain at least one uppercase letter")
+        if not any(c.isdigit() for c in v):
+            raise AuthException("Password must contain at least one digit")
+        if not any(not c.isalnum() for c in v):  # special character check
+            raise AuthException("Password must contain at least one special character")
+        return self

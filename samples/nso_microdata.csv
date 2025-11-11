@@ -1,0 +1,12 @@
+id,age,gender,education,region,income
+1,34,Female,Bachelors,North,54000
+2,42,Male,Masters,West,72000
+3,29,Female,Bachelors,East,48000
+4,51,Male,Doctorate,North,91000
+5,38,Female,Masters,South,61000
+6,27,Male,Bachelors,West,45000
+7,45,Female,Doctorate,South,85000
+8,33,Male,Masters,East,67000
+9,60,Female,Bachelors,North,73000
+10,36,Male,Bachelors,South,58000
+

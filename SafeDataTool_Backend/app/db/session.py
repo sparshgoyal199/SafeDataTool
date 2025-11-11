@@ -1,18 +1,18 @@
 # database.py
-from sqlmodel import SQLModel, create_engine, Session
-from dotenv import load_dotenv
-import os
+from sqlmodel import SQLModel, Session, create_engine
 
-load_dotenv()  # Load environment variables
+from app.config import get_settings
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+settings = get_settings()
 
-engine = create_engine(DATABASE_URL, echo=True)  # echo=True shows SQL logs
+echo_sql = settings.environment.lower() == "development"
+engine = create_engine(settings.database_url, echo=echo_sql)
 
-# Function to initialize DB tables
-def init_db():
+
+def init_db() -> None:
     SQLModel.metadata.create_all(engine)
-    
+
+
 def get_session() -> Session:
     with Session(engine) as session:
         yield session

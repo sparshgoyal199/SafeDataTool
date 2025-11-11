@@ -1,20 +1,21 @@
 from fastapi import FastAPI, Request
-from app.api.routes.auth import auth_router
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import PlainTextResponse,JSONResponse
 from fastapi.exceptions import RequestValidationError
-#always gives absolute path while importing because python will automatically resolves the path when running through sys.path
-#sys.path is just a Python list that tells the interpreter where to look for modules and packages when you use an import statement.
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 import uvicorn
-from app.db.models import User
+
+from app.api.routes.auth import auth_router
+from app.api.routes.datasets import datasets_router
+from app.api.routes.pipeline import pipeline_router
+from app.config import get_settings
 from app.db.session import init_db
-#db.session is acting as the package for init_db
+
 app = FastAPI()
-#FastAPI already have its own exception handler which returns internal server error instead of crashing the programme 
+settings = get_settings()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # or specific origin
+    allow_origins=settings.allow_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -64,7 +65,15 @@ async def validation_exception_handler(request, exc):
     )
 
 
+@app.on_event("startup")
+def on_startup() -> None:
+    init_db()
+
+
 app.include_router(auth_router)
+app.include_router(datasets_router)
+app.include_router(pipeline_router)
+
 def start():
     init_db()
     uvicorn.run('main:app', host='127.0.0.1', port=8000, reload=True)

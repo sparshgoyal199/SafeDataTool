@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; margin: 2rem; color: #1a1a1a; }
+        h1, h2, h3 { color: #003366; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 1.5rem; }
+        th, td { border: 1px solid #cccccc; padding: 0.5rem; text-align: left; }
+        th { background: #f2f5fa; }
+        .section { margin-bottom: 2rem; }
+        .metric-value { font-weight: bold; }
+        .badge { display: inline-block; padding: 0.25rem 0.5rem; background: #e6f0ff; border-radius: 0.25rem; }
+        .summary { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .summary-card { flex: 1 1 220px; border: 1px solid #d6e0f5; border-radius: 8px; padding: 1rem; background: #f9fbff; }
+        .summary-card h3 { margin-top: 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{ title }}</h1>
+        <p><strong>Generated:</strong> {{ generated_at }}</p>
+        <p><strong>Dataset:</strong> {{ dataset.name }} — {{ dataset.description or "No description provided" }}</p>
+        <p><strong>Configuration:</strong> {{ config.name }} (Technique: {{ config.privacy_technique }})</p>
+    </header>
+
+    <section class="section">
+        <h2>Pipeline Summary</h2>
+        <div class="summary">
+            <div class="summary-card">
+                <h3>Quasi Identifiers</h3>
+                <p>{{ config.quasi_identifiers | join(", ") }}</p>
+            </div>
+            <div class="summary-card">
+                <h3>Transformation</h3>
+                <p>{{ config.privacy_technique | title }}</p>
+                <p class="badge">Parameters</p>
+                <pre>{{ config.privacy_parameters | tojson(indent=2) }}</pre>
+            </div>
+            <div class="summary-card">
+                <h3>Processing Status</h3>
+                <p>Started: {{ run.started_at }}</p>
+                <p>Completed: {{ run.completed_at }}</p>
+                <p>Status: {{ run.status }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Risk Assessment</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Description</th>
+                    <th>Value</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for metric in risk_metrics %}
+                <tr>
+                    <td>{{ metric.name }}</td>
+                    <td>{{ metric.label }}</td>
+                    <td class="metric-value">{{ "%.4f"|format(metric.value) }}</td>
+                    <td>
+                        {% if metric.details %}
+                            <pre>{{ metric.details | tojson(indent=2) }}</pre>
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="section">
+        <h2>Utility Evaluation</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Description</th>
+                    <th>Value</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for metric in utility_metrics %}
+                <tr>
+                    <td>{{ metric.name }}</td>
+                    <td>{{ metric.label }}</td>
+                    <td class="metric-value">{{ "%.4f"|format(metric.value) }}</td>
+                    <td>
+                        {% if metric.details %}
+                            <pre>{{ metric.details | tojson(indent=2) }}</pre>
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="section">
+        <h2>Recommendations</h2>
+        <ul>
+        {% for recommendation in recommendations %}
+            <li>{{ recommendation }}</li>
+        {% endfor %}
+        </ul>
+    </section>
+</body>
+</html>
+

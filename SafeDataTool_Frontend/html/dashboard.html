@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeData Dashboard</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script defer src="../js/dashboard.js"></script>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="brand">
+            <h1>SafeData</h1>
+            <span class="tagline">Privacy & Utility Management</span>
+        </div>
+        <div class="actions">
+            <button id="refresh-button" class="btn secondary">Refresh</button>
+            <button id="logout-button" class="btn danger">Logout</button>
+        </div>
+    </header>
+
+    <div id="notifications"></div>
+
+    <main class="dashboard">
+        <section class="card">
+            <h2>Upload Dataset</h2>
+            <form id="dataset-upload-form" class="form-grid">
+                <label>
+                    Dataset Name
+                    <input type="text" id="dataset-name" required>
+                </label>
+                <label>
+                    Description
+                    <textarea id="dataset-description" rows="2" placeholder="Optional description"></textarea>
+                </label>
+                <label class="file-input">
+                    Select File
+                    <input type="file" id="dataset-file" accept=".csv,.parquet" required>
+                </label>
+                <button type="submit" class="btn primary">Upload Dataset</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Datasets</h2>
+            <div id="datasets-table" class="table-container"></div>
+            <div id="dataset-detail" class="details-container compact"></div>
+        </section>
+
+        <section class="card">
+            <h2>Create Pipeline Configuration</h2>
+            <form id="config-form" class="form-grid">
+                <label>
+                    Configuration Name
+                    <input type="text" id="config-name" required>
+                </label>
+                <label>
+                    Description
+                    <textarea id="config-description" rows="2" placeholder="Optional description"></textarea>
+                </label>
+                <label>
+                    Quasi Identifiers
+                    <input type="text" id="config-quasi" placeholder="age, gender, region" required>
+                    <small>Comma separated column names</small>
+                </label>
+                <label>
+                    Sensitive Attributes
+                    <input type="text" id="config-sensitive" placeholder="income">
+                    <small>Comma separated column names (optional)</small>
+                </label>
+                <label>
+                    Privacy Technique
+                    <select id="privacy-technique">
+                        <option value="k_anonymity">k-Anonymity</option>
+                        <option value="differential_privacy">Differential Privacy</option>
+                    </select>
+                </label>
+                <div id="technique-parameters" class="parameters-grid">
+                    <div class="parameter-group" data-technique="k_anonymity">
+                        <label>
+                            k value
+                            <input type="number" id="param-k" min="2" value="5">
+                        </label>
+                        <label>
+                            Suppression Label
+                            <input type="text" id="param-suppression" value="SUPPRESSED">
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" id="param-generalise" checked>
+                            <span>Generalise numeric columns</span>
+                        </label>
+                        <label>
+                            Bin Count
+                            <input type="number" id="param-bin-count" min="2" max="20" value="5">
+                        </label>
+                    </div>
+                    <div class="parameter-group hidden" data-technique="differential_privacy">
+                        <label>
+                            Epsilon
+                            <input type="number" id="param-epsilon" min="0.01" step="0.01" value="1.0">
+                        </label>
+                        <label>
+                            Sensitivity
+                            <input type="number" id="param-sensitivity" min="0.1" step="0.1" value="1.0">
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn primary">Save Configuration</button>
+            </form>
+            <div id="config-list" class="list-container"></div>
+        </section>
+
+        <section class="card">
+            <h2>Run SafeData Pipeline</h2>
+            <form id="run-form" class="form-grid">
+                <label>
+                    Dataset
+                    <select id="run-dataset" required></select>
+                </label>
+                <label>
+                    Pipeline Configuration
+                    <select id="run-config" required></select>
+                </label>
+                <label>
+                    Identifier Dataset (optional)
+                    <select id="run-identifier"></select>
+                </label>
+                <button type="submit" class="btn primary">Execute Pipeline</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Pipeline Runs</h2>
+            <div id="runs-table" class="table-container"></div>
+        </section>
+
+        <section class="card">
+            <h2>Run Details</h2>
+            <div id="run-details" class="details-container">
+                <p>Select a run to view detailed metrics and download outputs.</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
